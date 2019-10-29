@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<head th:replace="fragments::head(title=#{personeel})"></head>
+<body>
+	<div th:if="${werknemer}==null" class="fout">werknemer niet		gevonden.</div>
+	<div th:if="${werknemer}!=null">
+		<h1 th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
+		<label>Voornaam</label><br>
+		<b><span th:text="${werknemer.voornaam}"></span></b><br><br>
+		<label>Familienaam</label><br>
+		<b><span th:text="${werknemer.familienaam}"></span></b><br><br>
+		<label>Email adres</label><br>
+		<b><span th:text="${werknemer.email}"></span></b><br><br>
+		<label>Salaris</label><br>
+		<b><span th:text="${werknemer.salaris}"></span></b><br><br>
+		<label>Jobtitel</label><br>
+		<b><span th:text="${werknemer.jobtitel.getNaam()}"></span></b><br><br>
+		<label>Geboorte</label><br>
+		<b><span th:text="${werknemer.geboorte}"></span></b><br><br>
+	</div>
+	<div th:if="${ondergeschikten}!=null">
+	 	<label>Ondergeschikten</label><br>
+		<table>
+               <tr th:each="ondergeschikte : ${ondergeschikten}">                                  
+                    <td><a th:href="@{/werknemersfiche/{id}(id=*{ondergeschikte.id})}"><span th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|"></span></a></td>
+                </tr>
+        </table>
+	</div>
+	<div th:if="${werknemer}!=null">
+	    <label>Foto</label><br>
+	    <img th:src="@{/images/}+${werknemer.id}+.jpg"><br><br>
+		<a th:href="@{/werknemersfiche/opslag}">Opslag</a>
+		<a th:href="@{/werknemersfiche/rijksregisternummer}">Rijksregisternummer</a>	
+			
+	</div>
+</body>
+</html>

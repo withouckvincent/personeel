@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8"> 
+<head th:replace="fragments::head(title=#{personeel})"></head>
+<body>
+	<h1>
+		Menu
+	</h1>
+	<ul>
+					<li><a th:href="@{/werknemersfiche}">Werknemershiërarchie</a></li>
+					<li><a th:href="@{/jobtitels}">Jobtitels</a></li>
+ 		
+	</ul>
+</body>
+</html>
