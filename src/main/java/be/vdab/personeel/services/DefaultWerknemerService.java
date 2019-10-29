@@ -17,28 +17,33 @@ public class DefaultWerknemerService implements WerknemerService {
 
 	private final WerknemerRepository werknemerRepository;
 
-	
 	DefaultWerknemerService(WerknemerRepository werknemerRepository) {
-		this.werknemerRepository = werknemerRepository;		
+		this.werknemerRepository = werknemerRepository;
 	}
 
-	
 	@Override
-	public Optional<Werknemer> findById() {
-		return werknemerRepository.findById(1L);
+	public Optional<Werknemer> findById(long id) {
+
+		return werknemerRepository.findById(id);
 	}
 
+	@Override
+	public Optional<Werknemer> findByChefIsNull() {
+
+		return werknemerRepository.findByChefIsNull();
+	}
 
 	@Override
 	public List<Werknemer> findOndergeschikten(long id) {
 		List<Werknemer> ondergeschiktenList = new ArrayList<Werknemer>();
-	    werknemerRepository.findAll().forEach(werknemer -> {
-	    	if (id != werknemer.getId())
-	    	{
-				if (werknemer.getChef().getId() == id) {
-				ondergeschiktenList.add(werknemer);
+		werknemerRepository.findAll().forEach(werknemer -> {
+			if (werknemer.getChef() != null) {
+				if (id != werknemer.getId()) {
+					if (werknemer.getChef().getId() == id) {
+						ondergeschiktenList.add(werknemer);
+					}
 				}
-	    	}
+			}
 		});
 		return ondergeschiktenList;
 	}

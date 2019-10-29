@@ -20,19 +20,23 @@
 		<label>Geboorte</label><br>
 		<b><span th:text="${werknemer.geboorte}"></span></b><br><br>
 	</div>
+	<div th:if="${baas}!=null">
+	    <label>Chef</label><br>
+	    <b><a th:href="@{/werknemersfiche/{id}(id=${baas.id})}"><span th:text="|${baas.voornaam} ${baas.familienaam}|"></span></a></b><br><br>
+	</div>
 	<div th:if="${ondergeschikten}!=null">
 	 	<label>Ondergeschikten</label><br>
 		<table>
                <tr th:each="ondergeschikte : ${ondergeschikten}">                                  
-                    <td><a th:href="@{/werknemersfiche/{id}(id=*{ondergeschikte.id})}"><span th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|"></span></a></td>
+                    <td><a th:href="@{/werknemersfiche/{id}(id=*{ondergeschikte.id})}"><b><span th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|"></span></b></a></td>
                 </tr>
         </table>
 	</div>
 	<div th:if="${werknemer}!=null">
 	    <label>Foto</label><br>
 	    <img th:src="@{/images/}+${werknemer.id}+.jpg"><br><br>
-		<a th:href="@{/werknemersfiche/opslag}">Opslag</a>
-		<a th:href="@{/werknemersfiche/rijksregisternummer}">Rijksregisternummer</a>	
+		<a th:href="@{/werknemersfiche/opslag/{id}(id=${werknemer.id})}">Opslag</a>
+		<a th:href="@{/werknemersfiche/rijksregisternummer/{id}(id=${werknemer.id})}">Rijksregisternummer</a>	
 			
 	</div>
 </body>
