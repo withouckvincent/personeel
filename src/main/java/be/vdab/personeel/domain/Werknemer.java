@@ -23,18 +23,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@Entity
+@Table(name = "werknemers")
 
 
-	@Entity
-	@Table(name = "werknemers")
-	public class Werknemer implements Serializable {
+public class Werknemer implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	
+
 	@NotBlank
 	private String familienaam;
 
@@ -45,102 +44,92 @@ import org.springframework.format.annotation.NumberFormat.Style;
 	@NotBlank
 	private String email;
 
-
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "chefid")
 
-	
 	private Werknemer chef;
-	
-	
-	
-	@NotNull
-	@PositiveOrZero
-	
+
+	// @NotNull
+	// @PositiveOrZero
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "jobtitelId")
 	@NotNull
 	private Jobtitel jobtitel;
 
-	
 	@NotNull
 	@PositiveOrZero
 	@NumberFormat(style = Style.NUMBER)
 	@Digits(integer = 10, fraction = 2)
 	private BigDecimal salaris;
-	
+
 	@NotNull
 	private String paswoord;
-	
+
 	@DateTimeFormat(style = "S-")
 	@NotNull
 	private LocalDate geboorte;
 
-	
 	@Column(unique = true)
 	@NotNull
 	private long rijksregisternr;
-	
 
 	@Version
 	@NotNull
 	private long versie;
 
-
 	public long getId() {
 		return id;
 	}
-
 
 	public String getFamilienaam() {
 		return familienaam;
 	}
 
-
 	public String getVoornaam() {
 		return voornaam;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public Werknemer getChef() {
 		return chef;
 	}
-
 
 	public Jobtitel getJobtitel() {
 		return jobtitel;
 	}
 
-
 	public BigDecimal getSalaris() {
 		return salaris;
 	}
-
 
 	public String getPaswoord() {
 		return paswoord;
 	}
 
-
 	public LocalDate getGeboorte() {
 		return geboorte;
 	}
 
-
-	public long getRijksregisternr() {
+	public long getRijksregisternr(){
 		return rijksregisternr;
 	}
-
 
 	public long getVersie() {
 		return versie;
 	}
 
+	public void opslag(BigDecimal bedragOpslag) {
+		this.salaris = salaris.add(bedragOpslag);
+	}
+	
+	//@RijksregisterNr
+	public void setRijksregisternr(long rijksregisternr) {
+		this.rijksregisternr = rijksregisternr;
+	}
 
 	@Override
 	public int hashCode() {
@@ -149,7 +138,6 @@ import org.springframework.format.annotation.NumberFormat.Style;
 		result = prime * result + (int) (rijksregisternr ^ (rijksregisternr >>> 32));
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -165,11 +153,4 @@ import org.springframework.format.annotation.NumberFormat.Style;
 		return true;
 	}
 
-	
-	
-	
-	
-	}
-	
-	
-
+}

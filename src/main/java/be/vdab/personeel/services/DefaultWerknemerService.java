@@ -1,5 +1,6 @@
 package be.vdab.personeel.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +39,7 @@ public class DefaultWerknemerService implements WerknemerService {
 		List<Werknemer> ondergeschiktenList = new ArrayList<Werknemer>();
 		werknemerRepository.findAll().forEach(werknemer -> {
 			if (werknemer.getChef() != null) {
-				if (id != werknemer.getId()) {
+				if (id != werknemer.getId()) {  // Deze test is misschien niet meer nodig door de bovenstaande test , tenzij er een fout in de DB staat natuurlijk
 					if (werknemer.getChef().getId() == id) {
 						ondergeschiktenList.add(werknemer);
 					}
@@ -46,5 +47,19 @@ public class DefaultWerknemerService implements WerknemerService {
 			}
 		});
 		return ondergeschiktenList;
+	}
+
+	
+	
+	@Override
+	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
+	public void opslag(long id, BigDecimal bedrag) {
+		werknemerRepository.findById(id).ifPresent(werknemer ->  werknemer.opslag(bedrag));
+	}
+	
+	@Override
+	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
+	public void update(Werknemer werknemer) {
+		werknemerRepository.save(werknemer);
 	}
 }

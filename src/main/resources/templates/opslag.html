@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8"> 
+<head th:replace="fragments::head(title='Personeel opslag')"></head>
+<body>
+	<div th:if="${werknemer}==null" class="fout">werknemer niet gevonden.</div>
+	<h1 th:if="${werknemer}!=null">
+		Opslag voor <span th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></span>
+	</h1>
+	<form th:if="${werknemer} != null" method="post"
+		th:action="@{/werknemersfiche/opslag/{id}/(id=${werknemer.id})}"
+		th:object="${opslagForm}">
+		<label> Huidige salaris </label><br>
+		<label><b><span th:text="${werknemer.salaris}"></span></b></label><br><br>
+		<label>Bedrag: <span th:errors="*{bedragOpslag}"></span>
+			<input th:field="*{bedragOpslag}" required autofocus><br><br>
+			<input type="submit" value="Opslag">
+		</label>
+	</form>
+	
+</body>
+</html>

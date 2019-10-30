@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<head th:replace="fragments::head(title='Personeel opslag')"></head>
+<body>
+	<div th:if="${werknemer}==null" class="fout">werknemer niet
+		gevonden.</div>
+	<h1 th:if="${werknemer}!=null">
+		Rijksregisternummer <span
+			th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></span>
+	</h1>
+	<form th:if="${werknemer} != null" method="post"
+		th:action="@{/werknemersfiche/rijksregisternummer/{id}/(id=${werknemer.id})}" th:object="${rijksregisterForm}">
+		<label>Rijksregisternummer : <span th:errors="*{rijksregisternr}"></span>
+		<input th:field="${rijksregisterForm.rijksregisternr}" required autofocus><br>
+		<input type="hidden" th:field="${rijksregisterForm.geboortedatum}" >
+			<br> <input type="submit" value="Opslaan">
+		</label>
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<div class="fout" th:each="err : ${#fields.globalErrors()}"
+				th:text="${err}"></div>
+		</div>
+	</form>
+
+</body>
+</html>
