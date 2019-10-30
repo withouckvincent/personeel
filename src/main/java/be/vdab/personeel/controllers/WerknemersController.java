@@ -26,7 +26,7 @@ import be.vdab.personeel.services.WerknemerService;
 class WerknemersController {
 
 	private final WerknemerService werknemerService;
-	//private Werknemer tijdelijkeWerknemer;
+	
 
 	WerknemersController(WerknemerService werknemerService) {
 	this.werknemerService = werknemerService;

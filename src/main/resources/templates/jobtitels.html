@@ -1,12 +1,26 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 
-<meta charset="UTF-8"> 
+<meta charset="UTF-8">
 <head th:replace="fragments::head(title='Personeel jobtitels')"></head>
 <body>
-	<h1>
-		Jobtitels
-	</h1>
-
+	<h1>Jobtitels</h1>
+	<div th:if="${jobtitels}!=null">
+		<table>
+			<tr>
+				<td th:each="jobtitel : ${jobtitels}"><a
+					th:href="@{/jobtitels/{id}(id=*{jobtitel.id})}"><span
+						th:text="|${jobtitel.naam}|"></span></a></td>
+			</tr>
+		</table>
+	</div>
+	<div th:if="${jobtitelHoofding}!=null">
+		<h1 th:text="${jobtitelHoofding}"></h1>
+	</div>
+	<div th:if="${jobtitelWerknemers}!=null">
+		<ul>
+			<li th:each="werknemer : ${jobtitelWerknemers}"><a th:href="@{/werknemersfiche/{id}(id=*{werknemer.id})}"><span	th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></span></a></li>
+		</ul>
+	</div>
 </body>
 </html>

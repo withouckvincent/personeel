@@ -13,9 +13,9 @@
 	<entity>
 		<entity-name>be.vdab.personeel.domain.Jobtitel</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>590</entity-X-Coordinate>
-		<entity-Y-Coordinate>43</entity-Y-Coordinate>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>660</entity-X-Coordinate>
+		<entity-Y-Coordinate>280</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

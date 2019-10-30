@@ -8,4 +8,6 @@ import be.vdab.personeel.domain.Werknemer;
 
 public interface WerknemerRepository extends JpaRepository<Werknemer, Long>{
 	Optional<Werknemer> findByChefIsNull();
+	
+	//List<Werknemer> findByJobtitelIdLike(long id);
 }

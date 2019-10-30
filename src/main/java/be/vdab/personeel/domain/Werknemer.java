@@ -49,9 +49,7 @@ public class Werknemer implements Serializable {
 
 	private Werknemer chef;
 
-	// @NotNull
-	// @PositiveOrZero
-
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "jobtitelId")
 	@NotNull
