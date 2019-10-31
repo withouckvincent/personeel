@@ -12,9 +12,9 @@
 		th:action="@{/werknemersfiche/opslag/{id}/(id=${werknemer.id})}"
 		th:object="${opslagForm}">
 		<label> Huidige salaris </label><br>
-		<label><b><span th:text="${werknemer.salaris}"></span></b></label><br><br>
+		<label><b><span th:text="${{werknemer.salaris}}"></span></b></label><br><br>
 		<label>Bedrag: <span th:errors="*{bedragOpslag}"></span>
-			<input th:field="*{bedragOpslag}" required autofocus><br><br>
+			<input th:field="*{{bedragOpslag}}" required autofocus><br><br>
 			<input type="submit" value="Opslag">
 		</label>
 	</form>

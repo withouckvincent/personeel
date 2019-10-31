@@ -87,8 +87,7 @@ class WerknemersController {
 	public ModelAndView rijksregisternr(@PathVariable Optional<Werknemer> optionalWerknemer) {
 		ModelAndView modelAndView = new ModelAndView("rijksregisternummer");
 		optionalWerknemer.ifPresent(werknemer -> {
-			modelAndView.addObject(werknemer);		
-			System.out.println(werknemer.getGeboorte().format(DateTimeFormatter.ISO_DATE));
+			modelAndView.addObject(werknemer);					
 			String datum = werknemer.getGeboorte().format(DateTimeFormatter.ISO_DATE);
 			modelAndView.addObject(new RijksregisterForm(werknemer.getRijksregisternr(),datum));
 		});

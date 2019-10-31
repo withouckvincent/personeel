@@ -15,28 +15,24 @@ import be.vdab.personeel.repositories.JobtitelRepository;
 public class DefaultJobtitelService implements JobtitelService {
 
 	private final JobtitelRepository jobtitelRepository;
-	
+
 	DefaultJobtitelService(JobtitelRepository jobtitelRepository) {
 		this.jobtitelRepository = jobtitelRepository;
-		
+
 	}
 
 	@Override
 	public List<Jobtitel> findAll() {
-		//werknemerRepository.findByJobtitelIdLike(1L);
+
 		return jobtitelRepository.findAll();
-		
+
 	}
 
 	@Override
 	public Optional<Jobtitel> findById(long id) {
 
 		return jobtitelRepository.findById(id);
-		
+
 	}
-	
-
-
-	
 
 }

@@ -14,11 +14,11 @@
 		<label>Email adres</label><br>
 		<b><span th:text="${werknemer.email}"></span></b><br><br>
 		<label>Salaris</label><br>
-		<b><span th:text="${werknemer.salaris}"></span></b><br><br>
+		<b><span th:text="|${{werknemer.salaris}}|"></span></b><br><br>
 		<label>Jobtitel</label><br>
 		<b><span th:text="${werknemer.jobtitel.getNaam()}"></span></b><br><br>
 		<label>Geboorte</label><br>
-		<b><span th:text="${werknemer.geboorte}"></span></b><br><br>
+		<b><span th:text="${{werknemer.geboorte}}"></span></b><br><br>
 	</div>
 	<div th:if="${baas}!=null">
 	    <label>Chef</label><br>

@@ -8,6 +8,4 @@ import be.vdab.personeel.domain.Jobtitel;
 public interface JobtitelService {
 	List<Jobtitel> findAll();
 	Optional<Jobtitel> findById(long id);
-//	List<>findByJobtitelIdLike
-	
 }

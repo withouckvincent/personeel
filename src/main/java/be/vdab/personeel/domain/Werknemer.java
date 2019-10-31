@@ -25,8 +25,6 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "werknemers")
-
-
 public class Werknemer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +47,6 @@ public class Werknemer implements Serializable {
 
 	private Werknemer chef;
 
-	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "jobtitelId")
 	@NotNull
@@ -57,14 +54,16 @@ public class Werknemer implements Serializable {
 
 	@NotNull
 	@PositiveOrZero
-	@NumberFormat(style = Style.NUMBER)
+	//@NumberFormat(style = Style.NUMBER)
+	@NumberFormat(style = Style.NUMBER, pattern =  "#,##0.00")
 	@Digits(integer = 10, fraction = 2)
 	private BigDecimal salaris;
 
 	@NotNull
 	private String paswoord;
 
-	@DateTimeFormat(style = "S-")
+	@DateTimeFormat(style = "S-", pattern = "d-M-YY")
+
 	@NotNull
 	private LocalDate geboorte;
 
@@ -112,7 +111,7 @@ public class Werknemer implements Serializable {
 		return geboorte;
 	}
 
-	public long getRijksregisternr(){
+	public long getRijksregisternr() {
 		return rijksregisternr;
 	}
 
@@ -123,8 +122,8 @@ public class Werknemer implements Serializable {
 	public void opslag(BigDecimal bedragOpslag) {
 		this.salaris = salaris.add(bedragOpslag);
 	}
+
 	
-	//@RijksregisterNr
 	public void setRijksregisternr(long rijksregisternr) {
 		this.rijksregisternr = rijksregisternr;
 	}
