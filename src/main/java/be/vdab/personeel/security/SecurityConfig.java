@@ -15,8 +15,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String GEENROL = "geenrol";
 
-	private static final String USERS_BY_USERNAME = "select email as username, paswoord as password, '1' as enabled"
-			+ " from werknemers where email = ?";
+	private static final String USERS_BY_USERNAME = "select email as username, paswoord as password, '1' as enabled from werknemers where email = ?";
 
 	private static final String AUTHORITIES_BY_USERNAME = "select email as username, 'geenrol' as authorities from werknemers where email = ?";
 
@@ -30,7 +29,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(WebSecurity web) { // throws Exception moet er niet meer bij sedert een nieuwe spring boot
+	public void configure(WebSecurity web) { 
 		web.ignoring().mvcMatchers("/images/**");
 	}
 
